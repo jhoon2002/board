@@ -29,6 +29,6 @@ var g5_admin_url = "http://localhost:8080/admin";
 <script src="http://localhost:8080/js/jquery.menu.js"></script>
 <script src="http://localhost:8080/js/common.js"></script>
 <script src="http://localhost:8080/js/wrest_new.js"></script>
-
+--
 </head>
 <body>
