@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+
+ <tlib-version>0.9</tlib-version>
+
+ <short-name>LatestTagSupport</short-name>
+ <function>
+     <name>go</name>
+     <function-class>com.jhoon.springboard.tags.LatestTextTagSupport</function-class>
+     <function-signature>int rollDice()</function-signature>
+ </function>
+
+ <uri>http://springboard2</uri>
+ <tag>
+     <description>LatestTextTagSupport</description>
+     <name>text</name>
+     <tag-class>com.jhoon.springboard.tags.LatestTextTagSupport</tag-class>
+     <body-content>empty</body-content>
+ </tag>
+ </taglib>

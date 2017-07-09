@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:annotation-config />
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">    
+        <property name="locations" value="/WEB-INF/config.properties"/>    
+        <property name="fileEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="writeRepository" class="com.jhoon.springboard.repository.WriteRepositoryHibernate" />
+    <bean id="memberRepository" class="com.jhoon.springboard.repository.MemberRepositoryHibernate" />
+    <bean id="boardRepository" class="com.jhoon.springboard.repository.BoardRepositoryHibernate" />
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="namingStrategy" ref="prifixNamingStrategy" />
+    </bean>
+    
+    <bean id="prifixNamingStrategy" class="com.jhoon.springboard.util.PrefixNamingStrategy">
+        <!-- <aop:scoped-proxy proxy-target-class="false" /> -->
+    </bean>
+    
+    <!--  CustomBeanFactoryPostProcessor when test, preventing tiles error --> 
+    <bean class="com.jhoon.springboard.util.CustomBeanFactoryPostProcessor"/>
+    
+    <bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="completeAutoload" value="true" />
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+            </list>
+        </property>
+    </bean>
+	<!-- <bean id="boardController" class="com.jhoon.springboard.controller.BoardController" /> -->
+    <bean id="writeController" class="com.jhoon.springboard.write.WriteController" />
+</beans>

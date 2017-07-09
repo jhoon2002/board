@@ -1,0 +1,48 @@
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">   
+
+<tiles-definitions>
+    
+    <!-- 
+    <definition name="tilesbase" template="/WEB-INF/view/layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/view/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/view/footer.jsp" />
+    </definition>
+    <definition name="WILDCARD:contents/*/**" extends="tilesbase">
+        <put-attribute name="title" expression="${title}" />
+        <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
+    </definition>
+    -->
+    
+    <!-- webSite 공통 -->
+    <definition name="webBase">
+        <put-attribute name="header" value="/WEB-INF/view/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/view/footer.jsp" />
+    </definition>
+    
+    <!-- contents > info 메뉴 공통 -->
+    <definition name="WILDCARD:contents/info/*" template="/WEB-INF/view/info/{1}.jsp" extends="webBase">
+        <put-attribute name="head" value="/WEB-INF/view/info/head.jsp" />
+        <put-attribute name="foot" value="/WEB-INF/view/info/foot.jsp" />
+    </definition>
+    
+    <!-- board 공통 -->
+    <definition name="board" template="/WEB-INF/view/board/layout.jsp" extends="webBase">
+        <put-attribute name="head" expression="/WEB-INF/view/${head}" />
+        <put-attribute name="body" expression="/WEB-INF/view/skin/board/${body}" />
+        <put-attribute name="tail" expression="/WEB-INF/view/${tail}" />
+    </definition>
+    
+    <!-- admin 공통 -->
+    <definition name="admin" template="/WEB-INF/view/admin/layout.jsp" extends="webBase">
+        <put-attribute name="header"    value="/WEB-INF/view/admin/header.jsp" />
+        <put-attribute name="head" expression="/WEB-INF/view/admin/head.jsp" />
+        <put-attribute name="body" expression="/WEB-INF/view/admin/${body}" />
+        <put-attribute name="tail" expression="/WEB-INF/view/admin/tail.jsp" />
+        <put-attribute name="footer"    value="/WEB-INF/view/admin/footer.jsp" />
+    </definition>
+
+</tiles-definitions>
